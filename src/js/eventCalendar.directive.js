@@ -116,6 +116,7 @@ function eventCalendarDirective($injector, $parse) {
       vm.monthDisplay = $$mdEventCalendarUtil.months[vm.date.getMonth()];
       vm.yearDisplay = vm.date.getFullYear();
       vm.isTodayDisabled = vm.date.getMonth() === (new Date()).getMonth();
+      $$mdEventCalendarUtil.emitEvent('monthchanged', vm.date);
     }
 
 
@@ -124,6 +125,7 @@ function eventCalendarDirective($injector, $parse) {
       vm.monthDisplay = $$mdEventCalendarUtil.months[vm.date.getMonth()];
       vm.yearDisplay = vm.date.getFullYear();
       vm.isTodayDisabled = vm.date.getMonth() === (new Date()).getMonth();
+      $$mdEventCalendarUtil.emitEvent('monthchanged', vm.date);
     }
 
     function setToday() {

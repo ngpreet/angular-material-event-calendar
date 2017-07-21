@@ -3,7 +3,7 @@ angular
   .factory('$$mdEventCalendarUtil', utilService);
 
 
-function utilService($injector, $locale, $filter) {
+function utilService($injector, $locale, $filter, $rootScope) {
   var $mdDateLocale = $injector.has('$mdDateLocale') ? $injector.get('$mdDateLocale') : undefined;
   var dateFilter = $filter('date');
   var months = $mdDateLocale ? $mdDateLocale.months : $locale.DATETIME_FORMATS.MONTH;
@@ -35,11 +35,14 @@ function utilService($injector, $locale, $filter) {
     isSameMonthAndYear: isSameMonthAndYear,
     isSameDay: isSameDay,
     isDateWithinRange: isDateWithinRange,
-    formatEventTime: formatEventTime
+    formatEventTime: formatEventTime,
+    emitEvent: emitEvent
   };
   return service;
 
-
+  function emitEvent(name, data){
+     $rootScope.$broadcast(name, data);
+  }
 
 
   function formatEventTime(date) {
